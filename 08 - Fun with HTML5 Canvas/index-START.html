@@ -23,6 +23,7 @@
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.lineWidth = 100;
+    // blending colors
     ctx.globalCompositeOperation = 'multiply';
 
     //draws only on clickdown
@@ -52,8 +53,9 @@
       if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
         direction = !direction;
       }
-      if (ctx.direction) {
-        ctx.linewidth++
+
+      if (direction) {
+        ctx.lineWidth++;
       } else {
         ctx.lineWidth--;
       }
