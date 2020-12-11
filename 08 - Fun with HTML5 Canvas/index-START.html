@@ -15,7 +15,7 @@
     //block of pixels to paint on
     const ctx = canvas.getContext('2d')
 
-    // canvas width and height
+    // canvas width and height to screen height/width
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx.strokeStyle = '#BADA55';
@@ -24,6 +24,18 @@
 
     //draws only on clickdown
     let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function draw(e) {
+      if (!isDrawing) return; // stop function when mouse is not down
+      console.log(e);
+    }
+
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mousedown', () => is Drawing = true);
+    canvas.addEventListener('mouseup', () => is Drawing = false);
+    canvas.addEventListener('mouseout', () => is Drawing = false);
   </script>
 
   <style>
