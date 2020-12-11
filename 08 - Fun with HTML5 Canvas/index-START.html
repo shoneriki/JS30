@@ -18,6 +18,7 @@
     // canvas width and height to screen height/width
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    //drawing
     ctx.strokeStyle = '#BADA55';
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
@@ -30,12 +31,19 @@
     function draw(e) {
       if (!isDrawing) return; // stop function when mouse is not down
       console.log(e);
+      ctx.beginPath();
+      // start from
+      ctx.moveTo(lastX, lastY);
+      // go to
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      [lastX, lastY] = [e.offsetX, e.offsetY]
     }
 
     canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mousedown', () => is Drawing = true);
-    canvas.addEventListener('mouseup', () => is Drawing = false);
-    canvas.addEventListener('mouseout', () => is Drawing = false);
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
   </script>
 
   <style>
