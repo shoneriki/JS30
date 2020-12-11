@@ -23,6 +23,7 @@
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     ctx.lineWidth = 100;
+    ctx.globalCompositeOperation = 'multiply';
 
     //draws only on clickdown
     let isDrawing = false;
@@ -30,6 +31,7 @@
     let lastY = 0;
     //colors
     let hue = 0;
+    let direction = true;
 
     function draw(e) {
       if (!isDrawing) return; // stop function when mouse is not down
@@ -41,8 +43,21 @@
       // go to
       ctx.lineTo(e.offsetX, e.offsetY);
       ctx.stroke();
-      [lastX, lastY] = [e.offsetX, e.offsetY]
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+
       hue++;
+      if (hue >= 360) {
+        hue = 0;
+      }
+      if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+        direction = !direction;
+      }
+      if (ctx.direction) {
+        ctx.linewidth++
+      } else {
+        ctx.lineWidth--;
+      }
+
     }
     canvas.addEventListener('mousedown', (e) => {
       isDrawing = true;
